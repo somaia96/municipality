@@ -11,11 +11,11 @@ interface IProps {
 }
 export default function CardNews({ order = 0, news }: IProps) {
   return (
-    <Card className="w-full max-w-[100%] p-3 flex-col lg:flex-row my-3">
+    <Card className="w-full max-w-[100%] p-3 gap-5 flex-col lg:flex-row my-3">
       <CardHeader
         shadow={false}
         floated={false}
-        className="relative w-full lg:w-1/4 lg:shrink-0 lg:rounded-l-none"
+        className="relative m-0 w-full lg:w-1/4 lg:shrink-0 lg:rounded-l-none"
         style={order != 0 ? { order: order, marginRight: "auto" } : {}}
       >
         <img
