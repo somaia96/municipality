@@ -19,7 +19,7 @@ export default function CardNews({ order = 0, news }: IProps) {
         style={order != 0 ? { order: order, marginRight: "auto" } : {}}
       >
         <img
-          src={`src/assets/images/${news.img}`}
+          src={`/images/${news.img}`}
           alt="card-image"
           className="lg:h-[224px] w-full object-cover"
         />

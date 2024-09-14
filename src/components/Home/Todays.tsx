@@ -22,7 +22,7 @@ const Todays = () => {
                 <Card className="border rounded-3xl">
                   <CardContent className="flex relative p-0 items-center justify-center">
 
-                    <img className=" w-full h-full object-cover" src={`src/assets/images/${item}`} />
+                    <img className=" w-full h-full object-cover" src={`/images/${item}`} />
                     <span className="text-center absolute bottom-10 left-1/2 text-white transform -translate-x-1/2">تتواجد سيارة اللقاحات الجوالة عند نزلة الإسكان في منتصف المزة</span>
                   </CardContent>
                 </Card>
