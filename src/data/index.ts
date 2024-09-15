@@ -8,24 +8,24 @@ export const navLink:INavLink[] = [
     },
     {
         id:2,
-        link:"achievements",
-        text:"الانجازات"
+        link:"news",
+        text:"الأخبار"
     },
     {
         id:3,
+        link:"decisions",
+        text:"القرارات"
+    },
+    {
+        id:4,
         link:"about",
         text:"عن المجلس"
     },
     {
-        id:4,
+        id:5,
         link:"contact",
         text:"تواصل معنا"
-    },
-    {
-        id:5,
-        link:"complaints",
-        text:"الشكاوي"
-    },
+    }
 
 ]
 

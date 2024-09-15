@@ -9,7 +9,7 @@ const Navbar = () => {
         <nav className="bg-[#112D4F] py-3 text-gray-400">
             <div className="container flex items-center justify-between">
                 <Link to="/">
-                    <h3 className="text-2xl text-white">مجلس بلدية المزة</h3>
+                    <h3 className="text-2xl text-white">بلدية ضاحية الأسد</h3>
                 </Link>
                 <div style={isOpen ? { backgroundColor: "white", position: "fixed", zIndex: 4, top: 0, left: 0, width: "100%", height: "100vh", flexDirection: "column", display: "flex" } : {}} className="hidden md:flex items-center justify-center gap-4 text-lg">
                     {navLink.map((item, i) => <NavLink key={i} onClick={() => setIsOpen(false)} to={item.link}>{item.text}</NavLink>)}

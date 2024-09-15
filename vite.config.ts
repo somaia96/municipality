@@ -8,15 +8,17 @@ import serve from 'rollup-plugin-serve';
 export default defineConfig({
     plugins: [
       react(),
-      reactRefresh(),
-      serve({
-        open: true,
-        contentBase: '',
-        historyApiFallback: true,
-      }),
+  //     reactRefresh(),
+  //     serve({
+  //       open: true,
+  //       contentBase: '',
+  //       historyApiFallback: true,
+  //     }),
     ],
-    server: {
-      middlewareMode: 'html',
-    },
+  //   server: {
+  //       middlewareMode: true,
+
+  // //     middlewareMode: 'html',
+  //   },
   }
 )

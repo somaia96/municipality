@@ -2,10 +2,10 @@ import { createBrowserRouter, createRoutesFromElements, Route } from "react-rout
 import Layout from "../pages/Layout";
 import PageNotFound from "../pages/PageNotFound";
 import HomePage from "../pages/HomePage";
-import Complaints from "../pages/Complaints";
+import Decisions from "../pages/Decisions";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
-import Achievements from "../pages/Achievements";
+import NewsPage from "../pages/NewsPage";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -14,8 +14,8 @@ const router = createBrowserRouter(
                 <Route index element={<HomePage />} />
                 <Route path="about" element={<About />} />
                 <Route path="contact" element={<Contact />} />
-                <Route path="achievements" element={<Achievements />} />
-                <Route path="complaints" element={<Complaints />} />
+                <Route path="news" element={<NewsPage />} />
+                <Route path="decisions" element={<Decisions />} />
             </Route>
             <Route path="*" element={<PageNotFound />} />
         </>
