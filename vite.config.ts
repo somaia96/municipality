@@ -6,19 +6,8 @@ import serve from 'rollup-plugin-serve';
 // https://vitejs.dev/config/
 
 export default defineConfig({
-    plugins: [
-      react(),
-  //     reactRefresh(),
-  //     serve({
-  //       open: true,
-  //       contentBase: '',
-  //       historyApiFallback: true,
-  //     }),
-    ],
-  //   server: {
-  //       middlewareMode: true,
-
-  // //     middlewareMode: 'html',
-  //   },
+    plugins: [
+      react()
+    ]
   }
 )
