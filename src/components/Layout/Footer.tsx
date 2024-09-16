@@ -4,7 +4,7 @@ import TelegramSvg from "../../assets/SVG/TelegramSvg"
 
 const Footer = () => {
   return (
-    <footer className="text-white bg-[#112D4F] py-10">
+    <footer className="text-white bg-primary py-10">
       <div className="container flex flex-col md:flex-row justify-center items-center md:items-start gap-10 w-full text-base text-[#F3F3F3]">
         <div className="flex-1 flex flex-col justify-center items-center text-center md:text-start md:items-start gap-2">
           <h2 className="text-2xl">

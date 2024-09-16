@@ -11,4 +11,6 @@ export interface IInfo {
     title:string,
     description:string|string[],
     date?:string,
+    imgs?:string[],
 }
+

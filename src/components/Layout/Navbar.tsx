@@ -6,7 +6,7 @@ import { navLink } from "../../data"
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
     return (
-        <nav className="bg-[#112D4F] py-3 text-gray-400">
+        <nav className="bg-primary py-3 text-gray-400">
             <div className="container flex items-center justify-between">
                 <Link to="/">
                     <h3 className="text-2xl text-white">بلدية ضاحية الأسد</h3>

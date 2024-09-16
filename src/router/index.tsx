@@ -4,7 +4,7 @@ import PageNotFound from "../pages/PageNotFound";
 import HomePage from "../pages/HomePage";
 import Decisions from "../pages/Decisions";
 import About from "../pages/About";
-import Contact from "../pages/Contact";
+import Activeties from "../pages/Activeties";
 import NewsPage from "../pages/NewsPage";
 
 const router = createBrowserRouter(
@@ -13,7 +13,7 @@ const router = createBrowserRouter(
             <Route path="/" element={<Layout />} errorElement={<PageNotFound />} >
                 <Route index element={<HomePage />} />
                 <Route path="about" element={<About />} />
-                <Route path="contact" element={<Contact />} />
+                <Route path="activeties" element={<Activeties />} />
                 <Route path="news" element={<NewsPage />} />
                 <Route path="decisions" element={<Decisions />} />
             </Route>
