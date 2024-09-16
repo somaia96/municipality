@@ -149,3 +149,13 @@ export const ServicesInfo:IInfo[]=[
 
 
 ]
+export const FilterArr:string[]=[
+    "بيئية",
+    "فنية",
+    "ادارية",
+    "صحية",
+    "بيئية",
+    "فنية",
+    "ادارية",
+    "صحية",
+]
