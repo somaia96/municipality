@@ -12,7 +12,7 @@ interface IProps {
 }
 export default function CardNews({ order = 0, news }: IProps) {
   return (
-    <Card className="w-full max-w-[100%] p-3 md:gap-5 flex-col lg:flex-row my-3">
+    <Card className={(order != 0 ? "max-w-full md:max-w-[49%] " : "")+"w-full max-w-[100%] p-3 md:gap-5 flex-col lg:flex-row my-3"}>
       <CardHeader
         shadow={false}
         floated={false}
