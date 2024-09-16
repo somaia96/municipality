@@ -1,8 +1,13 @@
-
-const NewsPage = () => {
+import CardNews from "../components/Home/Card"
+import { IInfo } from "@/interfaces";
+interface IProps {
+  newsInfo: IInfo[],
+}
+const NewsPage = ({newsInfo}:IProps) => {
+  let ArrNews = newsInfo;
   return (
-    <div>
-      NewsPage
+    <div className="my-10">
+      {ArrNews.map((news) => <CardNews news={news} key={news.id} />)}
     </div>
   )
 }
