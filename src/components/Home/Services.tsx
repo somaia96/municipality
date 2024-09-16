@@ -2,7 +2,8 @@ import Head from './Head'
 import { FilterArr, ServicesInfo } from '../../data'
 import CardNews from './Card';
 import { Link } from "react-router-dom"
-import { Button } from '@material-tailwind/react';
+import { Button } from '../ui/button';
+// import { Button } from '@material-tailwind/react';
 
 const Services = () => {
   let arrServices = ServicesInfo.slice(0,5);
@@ -11,7 +12,7 @@ const Services = () => {
       <Head link='/services' title={"الخدمات المقدمة"} />
       <div className='flex justify-center items-center gap-3 overflow-x-scroll mb-2' style={{scrollbarColor:"transparent transparent"}}>
         {FilterArr.map((item)=>(
-          <Button className='w-28 md:w-36 py-1 text-primary hover:text-white bg-white hover:bg-primary text-lg'>{item}</Button>
+          <Button className='w-28 md:w-36 border-0 focus-visible:ring-0 py-1 text-primary hover:text-white bg-white hover:bg-primary text-lg'>{item}</Button>
         ))}
       </div>
       <div className='flex gap-3 flex-col md:flex-row md:flex-wrap md:justify-between'>
