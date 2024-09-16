@@ -6,7 +6,7 @@ interface IProps {
 const Decisions = ({newsInfo}:IProps) => {
   let ArrNews = newsInfo;
   return (
-    <div className="my-10">
+    <div className="my-10 container">
       {ArrNews.map((news) => <CardNews news={news} key={news.id} />)}
     </div>
   )
