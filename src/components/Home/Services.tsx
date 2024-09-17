@@ -10,7 +10,7 @@ const Services = () => {
   return (
     <div>
       <Head link='/services' title={"الخدمات المقدمة"} />
-      <div className='flex max-w-sm justify-self-center items-center gap-3 overflow-x-scroll mb-2' style={{scrollbarColor:"transparent transparent"}}>
+      <div className='flex lg:justify-center items-center gap-3 overflow-x-scroll mb-2' style={{scrollbarColor:"transparent transparent"}}>
         {FilterArr.map((item)=>(
           <Button className='w-28 md:w-36 border-0 focus-visible:ring-0 py-1 text-primary hover:text-white bg-white hover:bg-primary text-lg'>{item}</Button>
         ))}
