@@ -38,7 +38,7 @@ export default function CardNews({ order = 0, news }: IProps) {
         </div>
         { news.imgs ? <div className="flex max-w-full justify-center items-center md:justify-start w-full gap-3 mb-5 md:mb-0 -order-1 md:order-12">
           {news.imgs.map((img,i)=>(
-              <img className="flex-1 md:max-w-[90px] md:h-14" key={i} src={`/images/${img}`} />
+              <img className="w-auto h-14" key={i} src={`/images/${img}`} />
           ))}
         </div> : null
 
