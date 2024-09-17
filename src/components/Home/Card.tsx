@@ -36,7 +36,7 @@ export default function CardNews({ order = 0, news }: IProps) {
           {typeof (news.description) == "string" ? txtSlicer(news.description,(news.imgs?undefined:250)) : <ol type="1" className="list-decimal list-inside text-gray-700">
             {news.description.map((item, i) => <li key={i}>{item}</li>)}</ol>}
         </div>
-        { news.imgs ? <div className="flex justify-center items-center md:justify-start w-full gap-3 mb-5 md:mb-0 -order-1 md:order-12">
+        { news.imgs ? <div className="flex max-w-full justify-center items-center md:justify-start w-full gap-3 mb-5 md:mb-0 -order-1 md:order-12">
           {news.imgs.map((img,i)=>(
               <img className="md:h-14" key={i} src={`/images/${img}`} />
           ))}
