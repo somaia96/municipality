@@ -4,7 +4,6 @@ import News from '../components/Home/News'
 import Services from '../components/Home/Services'
 // import Todays from '../components/Home/Todays'
 import { newsImgInfo, newsInfo } from "../data"
-
 const HomePage = () => {
   return (
     <>

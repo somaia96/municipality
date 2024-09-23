@@ -14,3 +14,11 @@ export interface IInfo {
     imgs?:string[],
 }
 
+export interface IMember{
+    id:number,
+    name:string,
+    position:string,
+    description:string,
+    img:string,
+}
+

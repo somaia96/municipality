@@ -3,20 +3,22 @@ import Layout from "../pages/Layout";
 import PageNotFound from "../pages/PageNotFound";
 import HomePage from "../pages/HomePage";
 import Decisions from "../pages/Decisions";
-import About from "../pages/About";
-import Activeties from "../pages/Activeties";
+import AboutUs from "../pages/About";
 import NewsPage from "../pages/NewsPage";
-import { newsImgInfo,newsInfo } from "../data"
+import { newsImgInfo, newsInfo } from "../data"
+import Services from "../components/Services";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <>
             <Route path="/" element={<Layout />} errorElement={<PageNotFound />} >
                 <Route index element={<HomePage />} />
-                <Route path="about" element={<About />} />
-                <Route path="activeties" element={<Activeties />} />
-                <Route path="news" element={<NewsPage newsInfo={newsImgInfo}/>} />
+                <Route path="news" element={<NewsPage newsInfo={newsImgInfo} />} />
                 <Route path="decisions" element={<Decisions newsInfo={newsInfo} />} />
+                <Route path="events" element={<AboutUs />} />
+                <Route path="services" element={<Services />} />
+                <Route path="about" element={<AboutUs />} />
+                <Route path="complaints" element={<AboutUs />} />
             </Route>
             <Route path="*" element={<PageNotFound />} />
         </>

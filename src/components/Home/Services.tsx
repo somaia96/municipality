@@ -3,7 +3,6 @@ import { FilterArr, ServicesInfo } from '../../data'
 import CardNews from './Card';
 import { Link } from "react-router-dom"
 import { Button } from '../ui/button';
-// import { Button } from '@material-tailwind/react';
 
 const Services = () => {
   let arrServices = ServicesInfo.slice(0,5);
