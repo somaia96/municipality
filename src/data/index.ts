@@ -24,7 +24,7 @@ export const navLink:INavLink[] = [
     {
         id:5,
         link:"services",
-        text:"*الخدمات"
+        text:"الخدمات"
     },
     {
         id:6,

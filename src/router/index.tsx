@@ -5,6 +5,8 @@ import HomePage from "../pages/HomePage";
 import Decisions from "../pages/Decisions";
 import AboutUs from "../pages/About";
 import NewsPage from "../pages/NewsPage";
+import Services from "../pages/Services";
+
 import { newsImgInfo, newsInfo } from "../data"
 
 const router = createBrowserRouter(
@@ -15,7 +17,7 @@ const router = createBrowserRouter(
                 <Route path="news" element={<NewsPage newsInfo={newsImgInfo} />} />
                 <Route path="decisions" element={<Decisions newsInfo={newsInfo} />} />
                 <Route path="events" element={<AboutUs />} />
-                {/* <Route path="services" element={<Services />} /> */}
+                <Route path="services" element={<Services />} />
                 <Route path="about" element={<AboutUs />} />
                 <Route path="complaints" element={<AboutUs />} />
             </Route>
