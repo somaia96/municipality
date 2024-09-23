@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import  "../CssFolder/Comp7.css";
 function component7() {

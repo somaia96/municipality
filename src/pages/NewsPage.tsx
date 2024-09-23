@@ -17,6 +17,8 @@ const NewsPage = ({ newsInfo }: IProps) => {
   });
   
   const handelPagination = ( event:ChangeEvent<unknown>,page:number) => {
+    console.log(event);
+    
     const from = (page - 1) * pagesize;
     const to = (page - 1) * pagesize + pagesize;
     setPag({ ...Pag, from: from, to: to });
