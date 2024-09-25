@@ -1,11 +1,14 @@
 import CardNews from "../components/Home/Card";
-import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
 import { useEffect, useState, ChangeEvent } from "react";
 import { INewsApi } from "@/interfaces";
 import instance from '../api/instance'
-import CircularProgress from "@mui/material/CircularProgress";
 import Alerting from '../components/ui/Alert';
+import CircularProgress from "@mui/material/CircularProgress";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+import PaginationItem from "@mui/material/PaginationItem";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const pagesize = 2;
 
@@ -20,7 +23,6 @@ const NewsPage = () => {
         const res = await instance.get('/news');
         setNewsData(res.data.data);
         if (res.status === 200) return setIsLoading(false)
-
       } catch (error) {
         console.error('Error fetching news:', error);
         setIsLoading(false);
@@ -31,7 +33,7 @@ const NewsPage = () => {
   }, []);
 
   if (!newsData) setIsLoading(true)
- 
+
   const [Pag, setPag] = useState({
     from: 0,
     to: pagesize,
@@ -43,24 +45,29 @@ const NewsPage = () => {
     setPag({ ...Pag, from: from, to: to });
   };
 
-
   return (
     <div className="my-10 container">
       {isLoading ? <div className='flex justify-center my-10'>
         <CircularProgress />
-      </div> :err?<Alerting/>: <>
+      </div> : err ? <Alerting /> : <>
         {newsData.slice(Pag.from, Pag.to).map((news) => (
           <CardNews news={news} key={news.id} />
         ))}
         <div className="flex justify-items-center justify-center	">
-          <Stack spacing={2}></Stack>
-          <Pagination
-            dir="ltr"
-            onChange={handelPagination}
-            count={Math.ceil(newsData.length / pagesize)}
-            variant="outlined"
-            color="primary"
-          />
+          <Stack spacing={2}>
+            <Pagination
+              onChange={handelPagination}
+              count={Math.ceil(newsData.length / pagesize)}
+              color="primary"
+              shape="rounded"
+              renderItem={(item) => (
+                <PaginationItem
+                  slots={{ previous: ArrowForwardIcon, next: ArrowBackIcon }}
+                  {...item}
+                />
+              )}
+            />
+          </Stack>
         </div>
       </>}
     </div>

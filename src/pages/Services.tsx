@@ -15,7 +15,6 @@ const Services = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [err, setErr] = useState<boolean>(false);
 
-
   useEffect(() => {
     const fetchNews = async () => {
       try {

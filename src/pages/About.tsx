@@ -66,7 +66,7 @@ function AboutUs() {
         </div>
         <h3 className="text-lg font-bold  text-primary mt-3">أعضاء مجلس البلدية:</h3>
         <div className="members mt-3 flex flex-col md:flex-row gap-3">
-          {MemberInfo.map((member, i) => <Member key={i} member={member} />)}
+          {MemberInfo.map((member, i) => <Member key={member.id} member={member} />)}
         </div>
       </div>
     </>

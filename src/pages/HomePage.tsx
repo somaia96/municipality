@@ -1,9 +1,7 @@
-
 import { useEffect, useState } from 'react'
 import Header from '../components/Home/Header'
 import News from '../components/Home/News'
 import Services from '../components/Home/Services'
-// import Todays from '../components/Home/Todays'
 import instance from '../api/instance'
 import {ISerTabs, INewsApi } from '@/interfaces'
 const HomePage = () => {
@@ -14,7 +12,7 @@ const HomePage = () => {
   const [decisionsData, setDecisionsData] = useState<INewsApi[]>([]);
 
   useEffect(() => {
-    const fetchNews = async () => {
+    const fetchData = async () => {
       try {
         const resNew = await instance.get('/news');
         setNewsData(resNew.data.data);
@@ -30,18 +28,17 @@ const HomePage = () => {
         console.error('Error fetching news:', error);
       }
     };
-    fetchNews();
+    fetchData();
   }, []);
+
   return (
     <>
       <Header />
       <div className="container">
-        {/* <Todays /> */}
         <News newsInfo={newsData} title='أحدث الأخبار' link='/news' />
         <Services servicesData={servicesData} serTabsData={serTabsData}/>
         <News newsInfo={eventsData} title='أحدث الفعاليات' link='/activeties' />
         <News newsInfo={decisionsData} title='أحدث القرارات' link='/decisions' />
-
       </div>
     </>
   )

@@ -1,16 +1,17 @@
 import CardNews from "../components/Home/Card";
-import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
 import { useEffect, useState, ChangeEvent } from "react";
 import { INewsApi } from "@/interfaces";
 import instance from '../api/instance'
-import CircularProgress from "@mui/material/CircularProgress";
 import Alerting from '../components/ui/Alert';
-
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+import CircularProgress from "@mui/material/CircularProgress";
+import PaginationItem from "@mui/material/PaginationItem";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 const pagesize = 2;
 
 const Decisions = () => {
-
   const [newsData, setNewsData] = useState<INewsApi[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [err, setErr] = useState<boolean>(false);
@@ -39,8 +40,6 @@ const Decisions = () => {
   });
 
   const handelPagination = (event: ChangeEvent<unknown>, page: number) => {
-    console.log(event);
-
     const from = (page - 1) * pagesize;
     const to = (page - 1) * pagesize + pagesize;
     setPag({ ...Pag, from: from, to: to });
@@ -55,14 +54,20 @@ const Decisions = () => {
         <CardNews news={news} key={news.id} />
       ))}
       <div className="flex justify-items-center justify-center	">
-        <Stack spacing={2}></Stack>
-        <Pagination
-          dir="ltr"
-          onChange={handelPagination}
-          count={Math.ceil(ArrNews.length / pagesize)}
-          variant="outlined"
-          color="primary"
-        />
+      <Stack spacing={2}>
+          <Pagination
+            onChange={handelPagination}
+            count={Math.ceil(newsData.length / pagesize)}
+            color="primary"
+            shape="rounded"
+            renderItem={(item) => (
+              <PaginationItem
+                slots={{ previous: ArrowForwardIcon, next: ArrowBackIcon }}
+                {...item}
+              />
+            )}
+          />
+          </Stack>
       </div>
       </>}
     </div>
