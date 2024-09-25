@@ -2,29 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    font-family: "Tajawal", sans-serif;
-    background-color: #F3F3F3;
-}
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Tajawal", sans-serif;
-}
-
-nav .active{
-    color: white;
-    border-bottom: 1px solid white;
-}
-
-@media (max-width:720px) {
-    nav .active{
-        color: #112D4F;
-        border-bottom: 1px solid #112D4F;
-    }
-}
-
 @layer base {
   :root {
         --background: 0 0% 100%;
@@ -91,6 +68,29 @@ nav .active{
   body {
     @apply bg-background text-foreground;
     }
+}
+body{
+  font-family: "Tajawal", sans-serif;
+  background-color: #F3F3F3;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Tajawal", sans-serif;
+}
+
+nav .active{
+  color: white;
+  border-bottom: 1px solid white;
+}
+
+@media (max-width:720px) {
+  nav .active{
+      color: #112D4F;
+      border-bottom: 1px solid #112D4F;
+      font-weight: bold;
+  }
 }
 
 
