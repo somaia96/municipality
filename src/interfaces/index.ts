@@ -1,18 +1,7 @@
-
 export interface INavLink{
     id:number,
     link:string,
     text:string
-}
-
-export interface IInfo {
-    id:number,
-    tabName?:string,
-    img:string,
-    title:string,
-    description:string|string[],
-    date?:string,
-    imgs?:string[],
 }
 
 export interface IMember{
@@ -34,6 +23,7 @@ export interface INewsApi{
     activity_type_id?:number,
     created_at?:string,
 }
+
 export interface ISerTabs{
     id:number,
     name:string

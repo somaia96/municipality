@@ -1,8 +1,8 @@
 import AboutImage from "/images/Image.png";
-import Image1 from "/images/Image 1.png";
-import Image2 from "/images/Image 2.png";
-import Image3 from "/images/Image 3.png";
-import Member from "./Member";
+import Image1 from "/images/Image1.png";
+import Image2 from "/images/Image2.png";
+import Image3 from "/images/Image3.png";
+import Member from "../components/Member";
 import { MemberInfo } from "../data";
 
 function AboutUs() {
@@ -66,7 +66,7 @@ function AboutUs() {
         </div>
         <h3 className="text-lg font-bold  text-primary mt-3">أعضاء مجلس البلدية:</h3>
         <div className="members mt-3 flex flex-col md:flex-row gap-3">
-          {MemberInfo.map((member, i) => <Member key={member.id} member={member} />)}
+          {MemberInfo.map((member) => <Member key={member.id} member={member} />)}
         </div>
       </div>
     </>
