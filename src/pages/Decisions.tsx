@@ -1,18 +1,38 @@
 import CardNews from "../components/Home/Card";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { useState, ChangeEvent } from "react";
-import { IInfo } from "@/interfaces";
-
-interface IProps {
-  newsInfo: IInfo[];
-}
+import { useEffect, useState, ChangeEvent } from "react";
+import { INewsApi } from "@/interfaces";
+import instance from '../api/instance'
+import CircularProgress from "@mui/material/CircularProgress";
+import Alerting from '../components/ui/Alert';
 
 const pagesize = 2;
 
-const Decisions = ({ newsInfo }: IProps) => {
+const Decisions = () => {
 
-  const ArrNews = newsInfo;
+  const [newsData, setNewsData] = useState<INewsApi[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [err, setErr] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const res = await instance.get('/decision');
+        setNewsData(res.data.data);
+        if (res.status === 200) return setIsLoading(false)
+      } catch (error) {
+        console.error('Error fetching news:', error);
+        setIsLoading(false)
+        setErr(true);
+      }
+    };
+    fetchNews();
+  }, []);
+  if (!newsData) setIsLoading(true)
+
+
+  const ArrNews: INewsApi[] = newsData;
   const [Pag, setPag] = useState({
     from: 0,
     to: pagesize,
@@ -20,7 +40,7 @@ const Decisions = ({ newsInfo }: IProps) => {
 
   const handelPagination = (event: ChangeEvent<unknown>, page: number) => {
     console.log(event);
-    
+
     const from = (page - 1) * pagesize;
     const to = (page - 1) * pagesize + pagesize;
     setPag({ ...Pag, from: from, to: to });
@@ -28,6 +48,9 @@ const Decisions = ({ newsInfo }: IProps) => {
 
   return (
     <div className="my-10 container">
+       {isLoading ? <div className='flex justify-center my-10'>
+        <CircularProgress />
+      </div> :err?<Alerting/>:<>
       {ArrNews.slice(Pag.from, Pag.to).map((news) => (
         <CardNews news={news} key={news.id} />
       ))}
@@ -41,6 +64,7 @@ const Decisions = ({ newsInfo }: IProps) => {
           color="primary"
         />
       </div>
+      </>}
     </div>
   );
 };

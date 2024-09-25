@@ -1,0 +1,19 @@
+import ContactText from '../components/ContactText';
+import Form from '../components/Form';
+
+const Complaints = () => {
+    return (
+        <div className='bg-[url("/images/map1.jpg")]'>
+            <div className='py-5'>
+                <div className='container'>
+                    <div className='flex flex-col lg:flex-row justify-between gap-3 p-3 rounded-3xl bg-white'>
+                        <ContactText />
+                        <Form/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default Complaints

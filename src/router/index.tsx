@@ -6,20 +6,20 @@ import Decisions from "../pages/Decisions";
 import AboutUs from "../pages/About";
 import NewsPage from "../pages/NewsPage";
 import Services from "../pages/Services";
-
-import { newsImgInfo, newsInfo } from "../data"
+import Events from "../pages/Events";
+import Complaints from "../pages/Complaints";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <>
             <Route path="/" element={<Layout />} errorElement={<PageNotFound />} >
                 <Route index element={<HomePage />} />
-                <Route path="news" element={<NewsPage newsInfo={newsImgInfo} />} />
-                <Route path="decisions" element={<Decisions newsInfo={newsInfo} />} />
-                <Route path="events" element={<AboutUs />} />
+                <Route path="news" element={<NewsPage  />} />
+                <Route path="decisions" element={<Decisions />} />
+                <Route path="events" element={<Events  />} />
                 <Route path="services" element={<Services />} />
                 <Route path="about" element={<AboutUs />} />
-                <Route path="complaints" element={<AboutUs />} />
+                <Route path="complaints" element={<Complaints />} />
             </Route>
             <Route path="*" element={<PageNotFound />} />
         </>

@@ -7,6 +7,7 @@ export interface INavLink{
 
 export interface IInfo {
     id:number,
+    tabName?:string,
     img:string,
     title:string,
     description:string|string[],
@@ -22,3 +23,18 @@ export interface IMember{
     img:string,
 }
 
+export interface INewsApi{
+    id:number,
+    img?:string,
+    title:string,
+    description:string,
+    photos?:string[],
+    activity_date?:string,
+    service_category_id?:number,
+    activity_type_id?:number,
+    created_at?:string,
+}
+export interface ISerTabs{
+    id:number,
+    name:string
+}
