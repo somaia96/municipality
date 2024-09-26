@@ -1,5 +1,5 @@
 import CardNews from "../components/Home/Card";
-import { useEffect, useState, ChangeEvent } from "react";
+import {  useState, ChangeEvent } from "react";
 import { INewsApi } from "@/interfaces";
 import instance from '../api/instance'
 import Alerting from '../components/ui/Alert';
@@ -9,30 +9,20 @@ import Stack from "@mui/material/Stack";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useQuery } from '@tanstack/react-query'
 
 const pagesize = 2;
 
 const NewsPage = () => {
-  const [newsData, setNewsData] = useState<INewsApi[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [err, setErr] = useState<boolean>(false);
 
-  useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const res = await instance.get('/news');
-        setNewsData(res.data.data);
-        if (res.status === 200) return setIsLoading(false)
-      } catch (error) {
-        console.error('Error fetching news:', error);
-        setIsLoading(false);
-        setErr(true);
-      }
-    };
-    fetchNews();
-  }, []);
-
-  if (!newsData) setIsLoading(true)
+  const { isLoading, error, data}= useQuery({
+    queryKey: ['newsData'],
+    queryFn: async() =>{
+      const {data} = await instance.get('/news')
+      return data.data
+    }
+      
+  })
 
   const [Pag, setPag] = useState({
     from: 0,
@@ -45,19 +35,22 @@ const NewsPage = () => {
     setPag({ ...Pag, from: from, to: to });
   };
 
+  if (isLoading) return <div className='flex justify-center my-10'>
+  <CircularProgress />
+</div>
+
+  if (error) return <Alerting />
+
   return (
     <div className="my-10 container">
-      {isLoading ? <div className='flex justify-center my-10'>
-        <CircularProgress />
-      </div> : err ? <Alerting /> : <>
-        {newsData.slice(Pag.from, Pag.to).map((news) => (
+        {data.slice(Pag.from, Pag.to).map((news:INewsApi) => (
           <CardNews news={news} key={news.id} />
         ))}
         <div className="flex justify-items-center justify-center	">
           <Stack spacing={2}>
             <Pagination
               onChange={handelPagination}
-              count={Math.ceil(newsData.length / pagesize)}
+              count={Math.ceil(data.length / pagesize)}
               color="primary"
               shape="rounded"
               renderItem={(item) => (
@@ -69,7 +62,6 @@ const NewsPage = () => {
             />
           </Stack>
         </div>
-      </>}
     </div>
   );
 };

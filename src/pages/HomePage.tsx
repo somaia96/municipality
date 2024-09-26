@@ -1,44 +1,39 @@
-import { useEffect, useState } from 'react'
 import Header from '../components/Home/Header'
 import News from '../components/Home/News'
 import Services from '../components/Home/Services'
 import instance from '../api/instance'
-import {ISerTabs, INewsApi } from '@/interfaces'
+import { useQuery } from '@tanstack/react-query'
+import Alerting from '../components/ui/Alert';
+import CircularProgress from "@mui/material/CircularProgress";
+
 const HomePage = () => {
-  const [newsData, setNewsData] = useState<INewsApi[]>([]);
-  const [servicesData, setServicesData] = useState<INewsApi[]>([]);
-  const [serTabsData, setSerTabsData] = useState<ISerTabs[]>([]);
-  const [eventsData, setEventsData] = useState<INewsApi[]>([]);
-  const [decisionsData, setDecisionsData] = useState<INewsApi[]>([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const resNew = await instance.get('/news');
-        setNewsData(resNew.data.data);
-        const resSer = await instance.get('/services');
-        setServicesData(resSer.data.data);
-        const resEvent = await instance.get('/activity');
-        setEventsData(resEvent.data.data);
-        const resDes = await instance.get('/decision');
-        setDecisionsData(resDes.data.data);
-        const tabRes = await instance.get('/service-categories');
-        setSerTabsData(tabRes.data.data);
-      } catch (error) {
-        console.error('Error fetching news:', error);
-      }
-    };
-    fetchData();
-  }, []);
+  const { isLoading, error, data } = useQuery({
+    queryKey: ['homeData'],
+    queryFn: async () => {
+      const resNew = await instance.get('/news');
+      const eventRes = await instance.get('/activity')
+      const tabEveRes = await instance.get('/activity-type');
+      const resDes = await instance.get('/decision');
+      const resSer = await instance.get('/services');
+      const tabSerRes = await instance.get('/service-categories');
+      return { resNew, eventRes, tabEveRes, resDes, resSer, tabSerRes }
+    }
+  })
 
+  if (isLoading) return <div className='flex justify-center my-10'>
+    <CircularProgress />
+  </div>
+
+  if (error) return <Alerting />
   return (
     <>
       <Header />
       <div className="container">
-        <News newsInfo={newsData} title='أحدث الأخبار' link='/news' />
-        <Services servicesData={servicesData} serTabsData={serTabsData}/>
-        <News newsInfo={eventsData} title='أحدث الفعاليات' link='/activeties' />
-        <News newsInfo={decisionsData} title='أحدث القرارات' link='/decisions' />
+        <News newsInfo={data?.resNew.data.data} title='أحدث الأخبار' link='/news' />
+        <Services servicesData={data?.resSer.data.data} serTabsData={data?.tabSerRes.data.data} />
+        <News newsInfo={data?.eventRes.data.data} title='أحدث الفعاليات' link='/activeties' />
+        <News newsInfo={data?.resDes.data.data} title='أحدث القرارات' link='/decisions' />
       </div>
     </>
   )
