@@ -1,8 +1,8 @@
-import CardNews from "../components/Home/Card";
+import CardNews from "../components/Card";
 import { useState, ChangeEvent } from "react";
 import { INewsApi } from "@/interfaces";
 import instance from '../api/instance'
-import Alerting from '../components/ui/Alert';
+import Alerting from '../components/Complaint/Alert';
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -42,7 +42,7 @@ const Decisions = () => {
   return (
     <div className="my-10 container">
       {data.slice(Pag.from, Pag.to).map((news:INewsApi) => (
-        <CardNews news={news} key={news.id} />
+        <CardNews modal={true} news={news} key={news.id} />
       ))}
       <div className="flex justify-items-center justify-center	">
       <Stack spacing={2}>

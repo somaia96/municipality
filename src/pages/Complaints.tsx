@@ -1,5 +1,5 @@
-import ContactText from '../components/ContactText';
-import Form from '../components/Form';
+import ContactText from '../components/Complaint/ContactText';
+import Form from '../components/Complaint/Form';
 
 const Complaints = () => {
     return (

@@ -1,5 +1,5 @@
 import { FormEvent, ChangeEvent, useState } from 'react';
-import instance from '../api/instance'
+import instance from '../../api/instance'
 import toast, { Toaster } from 'react-hot-toast';
 import { PhotoIcon } from '@heroicons/react/24/solid'
 

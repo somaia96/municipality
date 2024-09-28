@@ -22,6 +22,7 @@ export interface INewsApi{
     service_category_id?:number,
     activity_type_id?:number,
     created_at?:string,
+    decision_id?:number,
 }
 
 export interface ISerTabs{

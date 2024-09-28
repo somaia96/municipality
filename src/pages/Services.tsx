@@ -1,9 +1,9 @@
-import CardNews from '../components/Home/Card';
+import CardNews from '../components/Card';
 import { useState } from "react";
 import { INewsApi } from "@/interfaces";
 import { Button } from '../components/ui/button';
 import CircularProgress from "@mui/material/CircularProgress";
-import Alerting from '../components/ui/Alert';
+import Alerting from '../components/Complaint/Alert';
 import instance from '../api/instance'
 import { useQuery } from '@tanstack/react-query'
 

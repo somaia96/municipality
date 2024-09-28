@@ -4,19 +4,29 @@ import {
   CardBody,
   Typography,
 } from "@material-tailwind/react";
-import { INewsApi } from "../../interfaces";
-import { txtSlicer } from "../../utils/functions";
+import { INewsApi } from "../interfaces";
+import { txtSlicer } from "../utils/functions";
+import Modal from "./Decision/Modal";
+import { useState } from "react";
 
 interface IProps {
   news: INewsApi,
   order?: number,
+  modal?:boolean,
 }
-
-export default function CardNews({ order = 0, news }: IProps) {
+export default function CardNews({modal= false, order = 0, news }: IProps) {
+  const [openDecision, setOpenDecision] = useState(false)
+ 
   let timestamp = news.activity_date ? new Date(news.activity_date!): new Date(news.created_at!);
 
+  const showDecision =(modal:boolean)=>{
+    if(modal){
+    setOpenDecision(true)
+    }
+    
+  }
   return (
-    <Card className={(order != 0 ? "max-w-full md:max-w-[49%] " : "")+"w-full max-w-[100%] p-3 md:gap-5 flex-col lg:flex-row my-3"}>
+    <Card onClick={()=>showDecision(modal)} className={(order != 0 ? "max-w-full md:max-w-[49%] " : "")+"w-full max-w-[100%] p-3 md:gap-5 flex-col lg:flex-row my-3"}>
       <CardHeader
         shadow={false}
         floated={false}
@@ -34,6 +44,7 @@ export default function CardNews({ order = 0, news }: IProps) {
       />}
       </CardHeader>
       <CardBody className="flex flex-col lg:p-0 lg:py-6 lg:my-0">
+        <Modal news={news} setOpenDecision={setOpenDecision} openDecision={openDecision}/>
         <Typography variant="h6" className="mb-4 text-xl text-primary uppercase">
           {news.title}
         </Typography>

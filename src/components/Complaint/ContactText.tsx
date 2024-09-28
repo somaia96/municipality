@@ -1,6 +1,6 @@
-import WhatsAppSvg from "../assets/SVG/WhatsAppSvg"
-import FacebookSvg from "../assets/SVG/FacebookSvg"
-import InstagramSvg from "../assets/SVG/InstagramSvg"
+import WhatsAppSvg from "../../assets/SVG/WhatsAppSvg"
+import FacebookSvg from "../../assets/SVG/FacebookSvg"
+import InstagramSvg from "../../assets/SVG/InstagramSvg"
 
 const ContactText = () => {
     return (

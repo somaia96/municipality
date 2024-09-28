@@ -1,18 +1,19 @@
 import { Link } from "react-router-dom"
 import Head from "./Head"
-import CardNews from "./Card"
+import CardNews from "../Card"
 import { INewsApi } from "@/interfaces";
 interface IProps {
   newsInfo: INewsApi[],
   title: string,
   link?: string,
+  modal?:boolean,
 }
-const News = ({newsInfo,title, link}:IProps) => {
+const News = ({modal=false,newsInfo,title, link}:IProps) => {
   let ArrNews = newsInfo.slice(0, 2);
   return (
     <div className="my-10">
       <Head link={link} title={title} />
-      {ArrNews.map((news) => <CardNews news={news} key={news.id} />)}
+      {ArrNews.map((news) => <CardNews modal={modal} news={news} key={news.id} />)}
       {link && <Link className="flex justify-center md:hidden" to={link} >
         <span className='w-fit text-primary font-bold border-primary border-b-2'>عرض المزيد</span>
       </Link>}

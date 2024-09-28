@@ -1,5 +1,5 @@
 import Head from './Head'
-import CardNews from './Card';
+import CardNews from '../Card';
 import { Link } from "react-router-dom"
 import { Button } from '../ui/button';
 import {ISerTabs, INewsApi } from '@/interfaces';

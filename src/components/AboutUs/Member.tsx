@@ -1,4 +1,4 @@
-import { IMember } from "../interfaces";
+import { IMember } from "../../interfaces";
 import {
   Card,
   CardHeader,

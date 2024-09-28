@@ -1,8 +1,8 @@
-import CardNews from "../components/Home/Card";
+import CardNews from "../components/Card";
 import {  useState, ChangeEvent } from "react";
 import { INewsApi } from "@/interfaces";
 import instance from '../api/instance'
-import Alerting from '../components/ui/Alert';
+import Alerting from '../components/Complaint/Alert';
 import CircularProgress from "@mui/material/CircularProgress";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";

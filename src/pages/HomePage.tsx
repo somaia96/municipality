@@ -3,7 +3,7 @@ import News from '../components/Home/News'
 import Services from '../components/Home/Services'
 import instance from '../api/instance'
 import { useQuery } from '@tanstack/react-query'
-import Alerting from '../components/ui/Alert';
+import Alerting from '../components/Complaint/Alert';
 import CircularProgress from "@mui/material/CircularProgress";
 
 const HomePage = () => {
@@ -33,7 +33,7 @@ const HomePage = () => {
         <News newsInfo={data?.resNew.data.data} title='أحدث الأخبار' link='/news' />
         <Services servicesData={data?.resSer.data.data} serTabsData={data?.tabSerRes.data.data} />
         <News newsInfo={data?.eventRes.data.data} title='أحدث الفعاليات' link='/activeties' />
-        <News newsInfo={data?.resDes.data.data} title='أحدث القرارات' link='/decisions' />
+        <News modal={true} newsInfo={data?.resDes.data.data} title='أحدث القرارات' link='/decisions' />
       </div>
     </>
   )
