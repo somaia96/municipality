@@ -12,7 +12,6 @@ export default function Form() {
     })
 
     const changeHandler = async (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
-        // console.log(e.target.value);
         const { name, value } = e.target;
         setCompData((prev) => {
             return {
