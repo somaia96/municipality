@@ -38,7 +38,7 @@ export default function CardNews({ noPic = true, modal = false, order = 0, news 
             className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-lg data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
           >
             <img
-              src={`/images/${news.img}`}
+              src={news.img}
               alt="card-image"
               className="h-auto w-full object-cover"
             />
@@ -52,7 +52,7 @@ export default function CardNews({ noPic = true, modal = false, order = 0, news 
         style={order != 0 ? { order: order, marginRight: "auto" } : {}}
       >
         {news.img ? <img
-          src={`/images/${news.img}`}
+          src={news.img}
           alt="card-image"
           className="lg:h-[224px] w-full object-cover"
           onClick={() => setOpenImg(true)}
