@@ -1,4 +1,3 @@
-import Header from '../components/Home/Header'
 import News from '../components/Home/News'
 import Services from '../components/Home/Services'
 import instance from '../api/instance'
@@ -28,7 +27,6 @@ const HomePage = () => {
   if (error) return <Alerting />
   return (
     <>
-      <Header />
       <div className="container">
         <News newsInfo={data?.resNew.data.data} title='أحدث الأخبار' link='/news' />
         <Services servicesData={data?.resSer.data.data} serTabsData={data?.tabSerRes.data.data} />
