@@ -13,25 +13,28 @@ export default function Form() {
 
     const changeHandler = async (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        setCompData((prev) => {
-            return {
-                ...prev,
-                [name]: value
-            }
-        })
+        let numbers = /^[0-9]+$/;
+        if (name == "number" && !value.match(numbers)) return null
+            setCompData((prev) => {
+                return {
+                    ...prev,
+                    [name]: value
+                }
+            })
+        
     }
 
     const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            instance.post('/complaint', comData)
-              toast.success('تم ارسال الشكوى بنجاح', {
-                            duration: 2000,
-                            position: 'top-center',
-                            className: 'bg-blue-100',
-                            icon: '👏',
-                    }
-                )
+           let res = await instance.post('/complaint', comData);
+              (res.status === 200 || res.status === 201) ? toast.success('تم ارسال الشكوى بنجاح', {
+                duration: 2000,
+                position: 'top-center',
+                className: 'bg-blue-100',
+                icon: '👏',
+            }
+            ) : null;
         } catch (error) {
             console.error('Error fetching news:', error);
         }
