@@ -33,10 +33,14 @@ export default function Form() {
                 position: 'top-center',
                 className: 'bg-blue-100',
                 icon: '👏',
-            }
-            ) : null;
+            }) : null;
         } catch (error) {
             console.error('Error fetching news:', error);
+            toast.error('حدث خطأ أثناء ارسال الشكوى', {
+                duration: 2000,
+                position: 'top-center',
+                className: 'bg-red-100',
+            });
         }
     };
 
