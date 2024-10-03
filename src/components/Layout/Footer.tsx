@@ -28,7 +28,7 @@ const Footer = () => {
         </div>
         <div className="flex-1 flex flex-col justify-center items-center text-center md:text-start md:items-start gap-2 px-3">
           <h3 className="text-lg">
-            الوصول لبلدية المزة باستعمال<br />
+            الوصول لبلدية ضاحية الأسد باستعمال<br />
             Google map
           </h3>
           <div className="rounded-lg border overflow-hidden">
