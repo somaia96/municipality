@@ -6,6 +6,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Alerting from '../components/Complaint/Alert';
 import instance from '../api/instance'
 import { useQuery } from '@tanstack/react-query'
+import { txtSlicer } from '../utils/functions';
 
 interface IEventTabs {
   id: number,
@@ -46,11 +47,11 @@ const Services = () => {
             onClick={() => handlActiveTabClick(tab.id)}
             className={(activeTab === tab.id
               ? "active-button"
-              : "disabled-button") + ' w-28 md:w-36 border-0 focus-visible:ring-0 py-1 text-primary hover:text-white bg-white hover:bg-primary text-lg'}>{tab.name}</Button>
+              : "disabled-button") + ' w-28 md:w-36 border-0 focus-visible:ring-0 py-1 text-primary hover:text-white bg-white hover:bg-primary md:text-lg'}>{txtSlicer(tab.name,12)}</Button>
         ))}
       </div>
       <div className='flex gap-3 flex-col md:flex-row md:flex-wrap md:justify-between'>
-        {filteredEvents.map((item: INewsApi) => <CardNews key={item.id} order={2} news={item} />)}
+        {filteredEvents.map((item: INewsApi) => <CardNews noPic={false} key={item.id} order={2} news={item} />)}
       </div>
     </div>
   )

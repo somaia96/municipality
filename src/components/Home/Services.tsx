@@ -3,6 +3,7 @@ import CardNews from '../Card';
 import { Link } from "react-router-dom"
 import { Button } from '../ui/button';
 import {ISerTabs, INewsApi } from '@/interfaces';
+import { txtSlicer } from '../../utils/functions';
 interface IProps {
   servicesData: INewsApi[],
   serTabsData:ISerTabs[],
@@ -14,7 +15,7 @@ const Services = ({servicesData,serTabsData}:IProps) => {
       <Head link='/services' title={"الخدمات المقدمة"} />
       <div className='flex lg:justify-center items-center gap-3 overflow-x-scroll mb-2' style={{scrollbarColor:"transparent transparent"}}>
         {serTabsData.map((item)=>(
-          <Button key={item.id} className='w-28 md:w-36 border-0 focus-visible:ring-0 py-1 text-primary hover:text-white bg-white hover:bg-primary text-lg'>{item.name}</Button>
+          <Button key={item.id} className='w-28 md:w-36 border-0 focus-visible:ring-0 py-1 text-primary hover:text-white bg-white hover:bg-primary md:text-lg'>{txtSlicer(item.name,12)}</Button>
         ))}
       </div>
       <div className='flex gap-3 flex-col md:flex-row md:flex-wrap md:justify-between'>

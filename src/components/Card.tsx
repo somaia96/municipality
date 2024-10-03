@@ -13,8 +13,9 @@ interface IProps {
   news: INewsApi,
   order?: number,
   modal?:boolean,
+  noPic?:boolean,
 }
-export default function CardNews({modal= false, order = 0, news }: IProps) {
+export default function CardNews({noPic=true,modal= false, order = 0, news }: IProps) {
   const [openDecision, setOpenDecision] = useState(false)
  
   let timestamp = news.activity_date ? new Date(news.activity_date!): new Date(news.created_at!);
@@ -27,7 +28,7 @@ export default function CardNews({modal= false, order = 0, news }: IProps) {
   }
   return (
     <Card onClick={()=>showDecision(modal)} className={(order != 0 ? "max-w-full md:max-w-[49%] " : "")+"w-full max-w-[100%] p-3 md:gap-5 flex-col lg:flex-row my-3"}>
-      <CardHeader
+      {noPic && <CardHeader
         shadow={false}
         floated={false}
         className={(order != 0 ? "hidden md:block " : "")+" relative m-0 w-full lg:w-1/4 lg:shrink-0 lg:rounded-l-none"}
@@ -42,7 +43,7 @@ export default function CardNews({modal= false, order = 0, news }: IProps) {
         alt="card-image"
         className="lg:h-[224px] w-full object-cover"
       />}
-      </CardHeader>
+      </CardHeader>}
       <CardBody className="flex flex-col lg:p-0 lg:py-6 lg:my-0">
         <Modal news={news} setOpenDecision={setOpenDecision} openDecision={openDecision}/>
         <Typography variant="h6" className="mb-4 text-xl text-primary uppercase">

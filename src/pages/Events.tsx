@@ -11,6 +11,7 @@ import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useQuery } from '@tanstack/react-query'
+import { txtSlicer } from "../utils/functions";
 
 interface IEventTabs {
   id: number,
@@ -65,7 +66,7 @@ const Events = () => {
             onClick={() => handlActiveTabClick(tab.id)}
             className={(activeTab === tab.id
               ? "active-button"
-              : "disabled-button") + ' w-28 md:w-36 border-0 focus-visible:ring-0 py-1 text-primary hover:text-white bg-white hover:bg-primary text-lg'}>{tab.name}</Button>
+              : "disabled-button") + ' w-28 md:w-36 border-0 focus-visible:ring-0 py-1 text-primary hover:text-white bg-white hover:bg-primary md:text-lg'}>{txtSlicer(tab.name,12)}</Button>
         ))}
       </div>
       {filteredEvents.slice(Pag.from, Pag.to).map((news: INewsApi) => (
