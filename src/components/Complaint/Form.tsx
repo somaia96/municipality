@@ -25,12 +25,13 @@ export default function Form() {
         e.preventDefault()
         try {
             instance.post('/complaint', comData)
-                .then(res => toast.success('تم ارسال الشكوى بنجاح', {
-                    duration: 2000,
-                    position: 'top-center',
-                    className: 'bg-blue-100',
-                    icon: '👏',
-                }))
+              toast.success('تم ارسال الشكوى بنجاح', {
+                            duration: 2000,
+                            position: 'top-center',
+                            className: 'bg-blue-100',
+                            icon: '👏',
+                    }
+                )
         } catch (error) {
             console.error('Error fetching news:', error);
         }
