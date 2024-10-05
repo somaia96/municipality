@@ -37,18 +37,18 @@ const Members = () => {
   if (error) return <Alerting />
 
   return (
-    <div className="mb-10 mt-5">
+    <div className="mb-10 mt-5 overflow-x-hidden md:overflow-visible">
       <h3 className="text-lg font-bold  text-primary my-5">أعضاء مجلس البلدية:</h3>
       <Carousel className="w-full" dir="ltr">
         <CarouselContent className="-ml-1">
           {data.map((member: IMember) => (
-            <CarouselItem key={member.id} className="overflow-hidden md:basis-1/3">
+            <CarouselItem key={member.id} className="overflow-hidden p-0 md:p-2 md:basis-1/3">
               <Member member={member} />
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious  className="hidden md:inline-flex"/>
+        <CarouselNext  className="hidden md:inline-flex"/>
       </Carousel>
     </div>
   )
