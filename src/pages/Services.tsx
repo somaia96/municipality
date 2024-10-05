@@ -2,11 +2,12 @@ import CardNews from '../components/Card';
 import { useState } from "react";
 import { INewsApi } from "@/interfaces";
 import { Button } from '../components/ui/button';
-import CircularProgress from "@mui/material/CircularProgress";
 import Alerting from '../components/Complaint/Alert';
 import instance from '../api/instance'
 import { useQuery } from '@tanstack/react-query'
 import { txtSlicer } from '../utils/functions';
+import CardSkeleton from '../components/Skeleton/CardSkeleton';
+import TabSkeleton from '../components/Skeleton/TabSkeleton';
 
 interface IEventTabs {
   id: number,
@@ -33,9 +34,19 @@ const Services = () => {
   if (activeTab !== 1) {
     filteredEvents = filteredEvents.filter((newData: INewsApi) => newData.service_category_id === activeTab);
   }
-  if (isLoading) return <div className='flex justify-center my-10'>
-    <CircularProgress />
-  </div>
+
+  if (isLoading) return (
+    <div className="my-10 container space-y-5">
+      <div className="font-header font-bold text-center md:text-3xl text-primary">الخدمات</div>
+      <div className='flex items-center justify-center gap-4 my-3'>
+        {Array.from({ length: 5 }).map((_, i) => <TabSkeleton key={i} />)}
+      </div>
+      <div className='grid md:grid-cols-2 gap-20'>
+        {Array.from({ length: 5 }).map((_, i) => <CardSkeleton noPic={false} key={i} />)}
+      </div>
+    </div>
+  )
+
 
   if (error) return <Alerting />
   return (
@@ -47,7 +58,7 @@ const Services = () => {
             onClick={() => handlActiveTabClick(tab.id)}
             className={(activeTab === tab.id
               ? "active-button"
-              : "disabled-button") + ' w-28 md:w-36 border-0 focus-visible:ring-0 py-1 text-primary hover:text-white bg-white hover:bg-primary md:text-lg'}>{txtSlicer(tab.name,12)}</Button>
+              : "disabled-button") + ' w-28 md:w-36 border-0 focus-visible:ring-0 py-1 text-primary hover:text-white bg-white hover:bg-primary md:text-lg'}>{txtSlicer(tab.name, 12)}</Button>
         ))}
       </div>
       <div className='flex gap-3 flex-col md:flex-row md:flex-wrap md:justify-between'>

@@ -7,9 +7,7 @@ export interface INavLink{
 export interface IMember{
     id:number,
     name:string,
-    position:string,
-    description:string,
-    img:string,
+    photo:string,
 }
 
 export interface INewsApi{

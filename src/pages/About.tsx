@@ -2,11 +2,11 @@ import AboutImage from "/images/Image.png";
 import Image1 from "/images/Image1.png";
 import Image2 from "/images/Image2.png";
 import Image3 from "/images/Image3.png";
-import Member from "../components/AboutUs/Member";
-import { MemberInfo } from "../data";
+import Members from "../components/AboutUs/Members";
 
 function AboutUs() {
   let imgArr = [Image1, Image2, Image3]
+
   return (
     <>
       <div className="container my-5">
@@ -64,10 +64,7 @@ function AboutUs() {
           </div>
 
         </div>
-        <h3 className="text-lg font-bold  text-primary mt-3">أعضاء مجلس البلدية:</h3>
-        <div className="members mt-3 flex flex-col md:flex-row gap-3">
-          {MemberInfo.map((member) => <Member key={member.id} member={member} />)}
-        </div>
+        <Members />
       </div>
     </>
   );

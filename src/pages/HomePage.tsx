@@ -3,7 +3,7 @@ import Services from '../components/Home/Services'
 import instance from '../api/instance'
 import { useQuery } from '@tanstack/react-query'
 import Alerting from '../components/Complaint/Alert';
-import CircularProgress from "@mui/material/CircularProgress";
+import HomeSkeleton from '../components/Skeleton/HomeSkeleton';
 
 const HomePage = () => {
 
@@ -20,9 +20,11 @@ const HomePage = () => {
     }
   })
 
-  if (isLoading) return <div className='flex justify-center my-10'>
-    <CircularProgress />
-  </div>
+  if (isLoading) return (
+    <div className="my-10 container space-y-10">
+      <HomeSkeleton />
+    </div>
+  )
 
   if (error) return <Alerting />
   return (

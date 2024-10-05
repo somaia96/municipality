@@ -6,12 +6,13 @@ import { Button } from '../components/ui/button';
 import Alerting from '../components/Complaint/Alert';
 import Stack from "@mui/material/Stack";
 import Pagination from "@mui/material/Pagination";
-import CircularProgress from "@mui/material/CircularProgress";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useQuery } from '@tanstack/react-query'
 import { txtSlicer } from "../utils/functions";
+import CardSkeleton from "../components/Skeleton/CardSkeleton";
+import TabSkeleton from "../components/Skeleton/TabSkeleton";
 
 interface IEventTabs {
   id: number,
@@ -52,11 +53,18 @@ const Events = () => {
     setPag({ ...Pag, from: from, to: to });
   };
 
-  if (isLoading) return <div className='flex justify-center my-10'>
-    <CircularProgress />
-  </div>
+  if (isLoading) return (
+    <div className="my-10 container space-y-5">
+      <div className="font-header md:text-3xl font-bold text-center text-primary">الفعاليات</div>
+      <div className='flex items-center justify-center gap-4 my-3'>
+        {Array.from({ length: 5 }).map((_, i) => <TabSkeleton key={i} />)}
+      </div>
+      {Array.from({length:5}).map((_,i)=><CardSkeleton key={i} />)}
+    </div>
+  )
 
   if (error) return <Alerting />
+
   return (
     <div className="my-10 container">
       <div className="font-header md:text-3xl font-bold text-center text-primary">الفعاليات</div>

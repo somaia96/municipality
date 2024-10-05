@@ -5,11 +5,11 @@ import instance from '../api/instance'
 import Alerting from '../components/Complaint/Alert';
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import CircularProgress from "@mui/material/CircularProgress";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useQuery } from '@tanstack/react-query'
+import CardSkeleton from "../components/Skeleton/CardSkeleton";
 
 const pagesize = 2;
 
@@ -34,9 +34,11 @@ const Decisions = () => {
     setPag({ ...Pag, from: from, to: to });
   };
 
-  if (isLoading) return <div className='flex justify-center my-10'>
-  <CircularProgress />
-</div>
+  if (isLoading) return (
+    <div className="my-10 container space-y-5">
+      {Array.from({length:5}).map((_,i)=><CardSkeleton key={i} />)}
+    </div>
+  )
 
   if (error) return <Alerting />
 

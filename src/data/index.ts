@@ -1,4 +1,4 @@
-import { INavLink,IMember } from "../interfaces";
+import { INavLink } from "../interfaces";
 
 export const navLink:INavLink[] = [
     {
@@ -35,31 +35,6 @@ export const navLink:INavLink[] = [
         id:7,
         link:"complaints",
         text:"الشكاوي"
-    }
-
-]
-
-export const MemberInfo :IMember[]=[
-    {
-        id:1,
-        name:"فارس دباح",
-        position:"رئيس البلدية",
-        description:"رئيس مجلس بلدية المزة، حاصل على شهادة دكتوراة من كذا، رئيس مجلس بلدية المزة، حاصل على شهادة دكتوراة من كذا، رئيس مجلس بلدية المزة، حاصل على شهادة دكتوراة من كذا،",
-        img:"/images/memberPhoto.png",
-    },
-    {
-        id:2,
-        name:"فارس دباح",
-        position:"رئيس البلدية",
-        description:"رئيس مجلس بلدية المزة، حاصل على شهادة دكتوراة من كذا، رئيس مجلس بلدية المزة، حاصل على شهادة دكتوراة من كذا، رئيس مجلس بلدية المزة، حاصل على شهادة دكتوراة من كذا،",
-        img:"/images/memberPhoto.png",
-    },
-    {
-        id:3,
-        name:"فارس دباح",
-        position:"رئيس البلدية",
-        description:"رئيس مجلس بلدية المزة، حاصل على شهادة دكتوراة من كذا، رئيس مجلس بلدية المزة، حاصل على شهادة دكتوراة من كذا، رئيس مجلس بلدية المزة، حاصل على شهادة دكتوراة من كذا،",
-        img:"/images/memberPhoto.png",
     }
 
 ]
