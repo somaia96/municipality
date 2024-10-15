@@ -10,25 +10,36 @@ export default function Form() {
         description: "",
         photos: []
     })
-
+    const [reader, setReader] = useState("")
     const changeHandler = async (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        let numbers = /^[0-9]+$/;
+        let numbers = /^[0-9]*$/;
         if (name == "number" && !value.match(numbers)) return null
-            setCompData((prev) => {
-                return {
-                    ...prev,
-                    [name]: value
-                }
-            })
-        
+        const files = e.target.files;
+        console.log(files[0]);
+
+        if (name == "photos" && e.target.files.length > 0) {
+            const compPhotos = files[0];
+            setCompData((prev) => ({ ...prev, photos: [compPhotos] }));
+            const reader = new FileReader();
+            reader.onload = () => setReader(reader.result);
+            reader.readAsDataURL(files[0]);
+        } else {
+            setCompData((prev) => ({ ...prev, [name]: value }));
+        }
     }
 
     const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        console.log(comData);
+
         try {
-           let res = await instance.post('/complaint', comData);
-              (res.status === 200 || res.status === 201) ? toast.success('تم ارسال الشكوى بنجاح', {
+            let res = await instance.post('/complaint', comData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                }
+            });
+            (res.status === 200 || res.status === 201) ? toast.success('تم ارسال الشكوى بنجاح', {
                 duration: 2000,
                 position: 'top-center',
                 className: 'bg-blue-100',
@@ -48,13 +59,13 @@ export default function Form() {
         <form className='bg-[#F8F0E5] lg:w-5/12 p-3 rounded-xl' onSubmit={(e) => submitHandler(e)}>
             <Toaster position="top-center" reverseOrder={false} />
             <div className="space-y-2">
-
                 <div className="space-y-1">
                     <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
-                        اسم مقدم الشكوى
+                        اسم مقدم الشكوى:<span className='text-red-900'>*</span>
                     </label>
                     <div className="flex rounded-md shadow-sm w-full">
                         <input
+                            required
                             id="name"
                             name="name"
                             type="text"
@@ -69,10 +80,11 @@ export default function Form() {
 
                 <div className="space-y-1">
                     <label htmlFor="number" className="block text-sm font-medium leading-6 text-gray-900">
-                        رقم التواصل:
+                        رقم التواصل:<span className='text-red-900'>*</span>
                     </label>
                     <div className="flex rounded-md shadow-sm w-full">
                         <input
+                            required
                             id="number"
                             name="number"
                             type="text"
@@ -91,6 +103,7 @@ export default function Form() {
                     </label>
                     <div>
                         <textarea
+                            required
                             id="description"
                             name="description"
                             rows={2}
@@ -107,25 +120,33 @@ export default function Form() {
                         الصور المرفقة :
                     </label>
                     <div className="bg-white flex justify-center rounded-lg px-6 py-3">
-                        <div className="text-center">
-                            <PhotoIcon aria-hidden="true" className="mx-auto h-12 w-12 text-gray-300" />
-                            <div className="items-center justify-center flex text-xs leading-6 text-gray-600">
-                                <label
-                                    htmlFor="photos"
-                                    className="relative cursor-pointer rounded-md bg-white font-semibold text-gray-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                                >
-                                    <span>اضغط لإضافة صور أو اسحب الصور وافلت هنا</span>
-                                    <input
-                                        id="photos"
-                                        name="photos"
-                                        type="file"
-                                        value={comData.photos}
-                                        onChange={(e) => { changeHandler(e) }}
-                                        className="sr-only" />
-                                </label>
+                        {reader ? <div className='relative h-44'>
+                            <img className='w-auto h-full' src={reader} alt='upload' /><span
+                                onClick={() => setReader("")}
+                                className='text-red-900 cursor-pointer font-semibold text-xl absolute right-2 top-0'>x</span>
+                        </div> :
+                            <div className="text-center">
+                                <PhotoIcon aria-hidden="true" className="mx-auto h-12 w-12 text-gray-300" />
+                                <div className="items-center justify-center flex text-xs leading-6 text-gray-600">
+
+                                    <label
+                                        htmlFor="photos"
+                                        className="relative cursor-pointer rounded-md bg-white font-semibold text-gray-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                                    >
+                                        <span>اضغط لإضافة صور أو اسحب الصور وافلت هنا</span>
+                                        <input
+                                            id="photos"
+                                            name="photos"
+                                            accept="image/*"
+                                            type="file"
+                                            onChange={(e) => { changeHandler(e) }}
+                                            className="sr-only" />
+                                    </label>
+                                </div>
+                                <p className="text-xs font-semibold leading-6 text-gray-600">يجب ألا يتجاوز حجم الصورة 2 ميغابايت وعدد الصور 1</p>
                             </div>
-                            <p className="text-xs font-semibold leading-6 text-gray-600">يجب ألا يتجاوز حجم الصورة 2 ميغابايت وعدد الصور 1</p>
-                        </div>
+                        }
+
                     </div>
                 </div>
             </div>

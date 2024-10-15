@@ -47,7 +47,7 @@ const Events = () => {
   });
 
   const handelPagination = (event: ChangeEvent<unknown>, page: number) => {
-    console.log(event);
+    console.log(event?"":null);
     const from = (page - 1) * pagesize;
     const to = (page - 1) * pagesize + pagesize;
     setPag({ ...Pag, from: from, to: to });
@@ -81,8 +81,10 @@ const Events = () => {
         <CardNews news={news} key={news.id} />
       ))}
       <div className="flex justify-items-center justify-center	">
-        <Stack spacing={2}>
+        <Stack spacing={1}>
           <Pagination
+          siblingCount={0}
+          boundaryCount={1}
             onChange={handelPagination}
             count={Math.ceil(filteredEvents.length / pagesize)}
             color="primary"

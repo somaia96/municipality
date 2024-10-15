@@ -4,20 +4,30 @@ import instance from '../api/instance'
 import { useQuery } from '@tanstack/react-query'
 import Alerting from '../components/Complaint/Alert';
 import HomeSkeleton from '../components/Skeleton/HomeSkeleton';
+import { useState } from 'react';
 
 const HomePage = () => {
-
+const [tabId, setTabId] = useState(1)
   const { isLoading, error, data } = useQuery({
     queryKey: ['homeData'],
     queryFn: async () => {
-      const resNew = await instance.get('/news');
-      const eventRes = await instance.get('/activity')
+      const resNew = await instance.get('/news?limit=2');
+      const eventRes = await instance.get('/activity?limit=2')
       const tabEveRes = await instance.get('/activity-type');
-      const resDes = await instance.get('/decision');
-      const resSer = await instance.get('/services');
+      const resDes = await instance.get('/decision?limit=2');
       const tabSerRes = await instance.get('/service-categories');
-      return { resNew, eventRes, tabEveRes, resDes, resSer, tabSerRes }
-    }
+      return { resNew, eventRes, tabEveRes, resDes, tabSerRes }
+    },
+  })
+  const resSer = useQuery({
+    queryKey: ['tabServData', tabId],
+    queryFn: async ({ queryKey }) => {
+      const currentTabId = queryKey[1]; // Access tabId from queryKey
+      if (!currentTabId) return; // Avoid unnecessary initial request
+      const resSer = await instance.get(`/services?limit=4&service_category_id=${tabId}`);
+      return resSer.data.data
+    },
+    enabled: !!tabId,
   })
 
   if (isLoading) return (
@@ -31,7 +41,7 @@ const HomePage = () => {
     <>
       <div className="container">
         <News newsInfo={data?.resNew.data.data} title='أحدث الأخبار' link='/news' />
-        <Services servicesData={data?.resSer.data.data} serTabsData={data?.tabSerRes.data.data} />
+        <Services setTabId={setTabId} servicesData={resSer.data} serTabsData={data?.tabSerRes.data.data} />
         <News newsInfo={data?.eventRes.data.data} title='أحدث الفعاليات' link='/activeties' />
         <News modal={true} newsInfo={data?.resDes.data.data} title='أحدث القرارات' link='/decisions' />
       </div>

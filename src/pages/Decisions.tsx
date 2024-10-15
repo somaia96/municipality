@@ -14,10 +14,10 @@ import CardSkeleton from "../components/Skeleton/CardSkeleton";
 const pagesize = 2;
 
 const Decisions = () => {
-  const { isLoading, error, data}= useQuery({
+  const { isLoading, error, data } = useQuery({
     queryKey: ['decisionData'],
-    queryFn: async() =>{
-      const {data} = await instance.get('/decision')
+    queryFn: async () => {
+      const { data } = await instance.get('/decision')
       return data.data
     }
   })
@@ -28,7 +28,7 @@ const Decisions = () => {
   });
 
   const handelPagination = (event: ChangeEvent<unknown>, page: number) => {
-    console.log(event);
+    console.log(event?"":null);
     const from = (page - 1) * pagesize;
     const to = (page - 1) * pagesize + pagesize;
     setPag({ ...Pag, from: from, to: to });
@@ -36,7 +36,7 @@ const Decisions = () => {
 
   if (isLoading) return (
     <div className="my-10 container space-y-5">
-      {Array.from({length:5}).map((_,i)=><CardSkeleton key={i} />)}
+      {Array.from({ length: 5 }).map((_, i) => <CardSkeleton key={i} />)}
     </div>
   )
 
@@ -44,12 +44,14 @@ const Decisions = () => {
 
   return (
     <div className="my-10 container">
-      {data.slice(Pag.from, Pag.to).map((news:INewsApi) => (
+      {data.slice(Pag.from, Pag.to).map((news: INewsApi) => (
         <CardNews modal={true} news={news} key={news.id} />
       ))}
       <div className="flex justify-items-center justify-center	">
-      <Stack spacing={2}>
+        <Stack spacing={2}>
           <Pagination
+            siblingCount={0}
+            boundaryCount={1}
             onChange={handelPagination}
             count={Math.ceil(data.length / pagesize)}
             color="primary"
@@ -61,7 +63,7 @@ const Decisions = () => {
               />
             )}
           />
-          </Stack>
+        </Stack>
       </div>
     </div>
   );
