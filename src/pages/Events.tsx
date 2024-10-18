@@ -1,6 +1,6 @@
 import CardNews from "../components/Card";
 import { useState, ChangeEvent } from "react";
-import { INewsApi } from "@/interfaces";
+import { IEvents, INewsApi } from "@/interfaces";
 import instance from '../api/instance'
 import { Button } from '../components/ui/button';
 import Alerting from '../components/Complaint/Alert';
@@ -39,7 +39,7 @@ const Events = () => {
 
   let filteredEvents = data?.eventRes.data.data;
   if (activeTab !== 1) {
-    filteredEvents = filteredEvents.filter((eveData: INewsApi) => eveData.activity_type_id === activeTab);
+    filteredEvents = filteredEvents.filter((eveData: IEvents) => eveData.activity_type_id === activeTab);
   }
   const [Pag, setPag] = useState({
     from: 0,
@@ -77,8 +77,8 @@ const Events = () => {
               : "disabled-button") + ' w-28 md:w-36 border-0 focus-visible:ring-0 py-1 text-primary hover:text-white bg-white hover:bg-primary md:text-lg'}>{txtSlicer(tab.name,12)}</Button>
         ))}
       </div>
-      {filteredEvents.slice(Pag.from, Pag.to).map((news: INewsApi) => (
-        <CardNews news={news} key={news.id} />
+      {filteredEvents.slice(Pag.from, Pag.to).map((news: IEvents) => (
+        <CardNews news={news as INewsApi} key={news.id} />
       ))}
       <div className="flex justify-items-center justify-center	">
         <Stack spacing={1}>

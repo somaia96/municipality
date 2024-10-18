@@ -2,9 +2,10 @@ import { FormEvent, ChangeEvent, useState } from 'react';
 import instance from '../../api/instance'
 import toast, { Toaster } from 'react-hot-toast';
 import { PhotoIcon } from '@heroicons/react/24/solid'
+import { IComplaints } from '@/interfaces';
 
 export default function Form() {
-    const [comData, setCompData] = useState({
+    const [comData, setCompData] = useState<IComplaints>({
         name: "",
         number: "",
         description: "",
@@ -15,15 +16,18 @@ export default function Form() {
         const { name, value } = e.target;
         let numbers = /^[0-9]*$/;
         if (name == "number" && !value.match(numbers)) return null
-        const files = e.target.files;
-        console.log(files[0]);
 
-        if (name == "photos" && e.target.files.length > 0) {
-            const compPhotos = files[0];
-            setCompData((prev) => ({ ...prev, photos: [compPhotos] }));
-            const reader = new FileReader();
-            reader.onload = () => setReader(reader.result);
-            reader.readAsDataURL(files[0]);
+        if (name == "photos") {
+            const files: FileList | null = (e.target as HTMLInputElement).files;
+            const filesArray = files ?? [];
+            if (filesArray?.length > 0) {
+
+                const newPhotos = Array.from(filesArray) as File[];
+                setCompData((prev) => ({ ...prev, photos: newPhotos }));
+                // const reader = new FileReader();
+                // reader.onload = () => setReader(reader.result);
+                // reader.readAsDataURL(files![0]);
+            }
         } else {
             setCompData((prev) => ({ ...prev, [name]: value }));
         }
@@ -31,8 +35,6 @@ export default function Form() {
 
     const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log(comData);
-
         try {
             let res = await instance.post('/complaint', comData, {
                 headers: {

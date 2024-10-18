@@ -2,12 +2,12 @@ import Head from './Head'
 import CardNews from '../Card';
 import { Link } from "react-router-dom"
 import { Button } from '../ui/button';
-import {ISerTabs, INewsApi } from '@/interfaces';
+import {ITabs, IServices, INewsApi } from '@/interfaces';
 import { txtSlicer } from '../../utils/functions';
 import { useState } from 'react';
 interface IProps {
-  servicesData: INewsApi[],
-  serTabsData:ISerTabs[],
+  servicesData: IServices[],
+  serTabsData:ITabs[],
   setTabId:(val:number)=>void,
 }
 const Services = ({setTabId,servicesData,serTabsData}:IProps) => {
@@ -25,14 +25,14 @@ const Services = ({setTabId,servicesData,serTabsData}:IProps) => {
         {serTabsData.map((tab)=>(
           <Button 
           key={tab.id} 
-          onClick={() => handlActiveTabClick(tab.id)}
+          onClick={() => handlActiveTabClick(tab.id!)}
           className={(activeTab === tab.id
             ? "active-button"
             : "disabled-button") +  ' w-28 md:w-36 border-0 focus-visible:ring-0 py-1 text-primary hover:text-white bg-white hover:bg-primary md:text-lg'}>{txtSlicer(tab.name,12)}</Button>
         ))}
       </div>
       <div className='flex gap-3 flex-col md:flex-row md:flex-wrap md:justify-between'>
-        {servicesData?.map((item) => <CardNews noPic={false} key={item.id} order={2} news={item} />)}
+        {servicesData?.map((item) => <CardNews noPic={false} key={item.id} order={2} news={item as INewsApi} />)}
       </div>
       <Link className="flex justify-center md:hidden" to='/services' >
         <span className='w-fit text-primary font-bold border-primary border-b-2'>عرض المزيد</span>

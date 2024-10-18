@@ -8,7 +8,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import instance from "../../api/instance";
 import Alerting from "../Complaint/Alert";
-import { IMember } from "@/interfaces";
+import { IMembers } from "@/interfaces";
 import Member from "./Member";
 import MemberSkeleton from "../Skeleton/MemberSkeleton";
 
@@ -41,7 +41,7 @@ const Members = () => {
       <h3 className="text-lg font-bold  text-primary my-5">أعضاء مجلس البلدية:</h3>
       <Carousel className="w-full" dir="ltr">
         <CarouselContent className="-ml-1">
-          {data.map((member: IMember) => (
+          {data.map((member: IMembers) => (
             <CarouselItem key={member.id} className="overflow-hidden p-0 md:p-2 md:basis-1/3">
               <Member member={member} />
             </CarouselItem>

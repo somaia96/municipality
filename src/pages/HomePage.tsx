@@ -22,8 +22,8 @@ const [tabId, setTabId] = useState(1)
   const resSer = useQuery({
     queryKey: ['tabServData', tabId],
     queryFn: async ({ queryKey }) => {
-      const currentTabId = queryKey[1]; // Access tabId from queryKey
-      if (!currentTabId) return; // Avoid unnecessary initial request
+      const currentTabId = queryKey[1];
+      if (!currentTabId) return;
       const resSer = await instance.get(`/services?limit=4&service_category_id=${tabId}`);
       return resSer.data.data
     },

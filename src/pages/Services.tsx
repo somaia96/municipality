@@ -1,6 +1,6 @@
 import CardNews from '../components/Card';
 import { useState } from "react";
-import { INewsApi } from "@/interfaces";
+import { INewsApi, IServices } from "@/interfaces";
 import { Button } from '../components/ui/button';
 import Alerting from '../components/Complaint/Alert';
 import instance from '../api/instance'
@@ -32,7 +32,7 @@ const Services = () => {
 
   let filteredEvents = data?.serviceRes.data.data;
   if (activeTab !== 1) {
-    filteredEvents = filteredEvents.filter((newData: INewsApi) => newData.service_category_id === activeTab);
+    filteredEvents = filteredEvents.filter((newData: IServices) => newData.service_category_id === `${activeTab}`);
   }
 
   if (isLoading) return (
@@ -62,7 +62,7 @@ const Services = () => {
         ))}
       </div>
       <div className='flex gap-3 flex-col md:flex-row md:flex-wrap md:justify-between'>
-        {filteredEvents.map((item: INewsApi) => <CardNews noPic={false} key={item.id} order={2} news={item} />)}
+        {filteredEvents.map((item: IServices) => <CardNews noPic={false} key={item.id} order={2} news={item as INewsApi} />)}
       </div>
     </div>
   )

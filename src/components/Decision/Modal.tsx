@@ -1,10 +1,10 @@
-import { INewsApi } from '@/interfaces'
+import { IDecisions } from '@/interfaces'
 import { Dialog } from '@headlessui/react'
 
 interface IProps {
     openDecision: boolean,
     setOpenDecision: (val: boolean) => void,
-    news: INewsApi,
+    news: IDecisions,
 }
 export default function Modal({ openDecision, setOpenDecision, news }: IProps) {
 
